@@ -394,7 +394,68 @@
         white-space: normal !important;
     }
 }
+/* ==========================================================================
+   CORRECCIÓN EXCLUSIVA PARA VISTA VERTICAL (PORTRAIT) EN MÓVILES
+   ========================================================================== */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    
+    /* 1. LOGOS: Parte superior a la izquierda */
+    #logos-institucionales-flotante {
+        position: absolute !important;
+        top: 8px !important;
+        left: 45px !important; /* Margen de 45px para no tapar los botones nativos (+/-) */
+        right: auto !important;
+        width: auto !important;
+        max-width: 55% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        z-index: 1010 !important;
+    }
 
+    #logos-institucionales-flotante img {
+        height: auto !important;
+        max-height: 24px !important; /* Tamaño compacto para vista vertical */
+        width: auto !important;
+    }
+
+    /* 2. TÍTULO: Parte superior a la derecha, un escalón abajo de los logos */
+    .atlas-title, div.leaflet-control h1, [class*="title"] {
+        position: absolute !important;
+        top: 42px !important; /* Un escalón abajo */
+        right: 8px !important;
+        left: auto !important;
+        width: auto !important;
+        max-width: 85% !important;
+        text-align: right !important;
+        z-index: 1010 !important;
+        margin: 0 !important;
+    }
+
+    /* 3. BUSCADOR: Por debajo del título a la izquierda */
+    #search-box, .leaflet-control-search, [class*="search"] {
+        position: absolute !important;
+        top: 85px !important; /* Por debajo del título */
+        left: 8px !important;
+        right: auto !important;
+        width: 55% !important; /* Ancho controlado para que no choque con las capas */
+        max-width: 180px !important;
+        z-index: 1010 !important;
+        margin: 0 !important;
+    }
+
+    /* 4. PANEL DE CAPAS: Alineado a la derecha, en la misma línea del buscador */
+    .leaflet-control-layers, [class*="layers"] {
+        position: absolute !important;
+        top: 85px !important; /* Misma altura en píxeles que el buscador */
+        right: 8px !important;
+        left: auto !important;
+        z-index: 1010 !important;
+        margin: 0 !important;
+    }
+}
+/* ==========================================================================
+   FIN DEL BLOQUE VERTICAL - EL RESTO PERMANECE INTACTO
+   ========================================================================== */
 
         </style>
         <title>Atlas de Planeación y Estadística Educativa 2026</title>
