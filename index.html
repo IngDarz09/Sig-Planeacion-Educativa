@@ -395,58 +395,58 @@
     }
 }
 /* ==========================================================================
-   CORRECCIÓN EXCLUSIVA PARA VISTA VERTICAL (PORTRAIT) EN MÓVILES
+   SOLUCIÓN AL ENCAJONADO VERTICAL - COORDINADAS CON ESPACIADO AMPLIO
    ========================================================================== */
 @media screen and (max-width: 767px) and (orientation: portrait) {
     
-    /* 1. LOGOS: Parte superior a la izquierda */
+    /* 1. LOGOS: Parte superior a la izquierda (fijo arriba) */
     #logos-institucionales-flotante {
         position: absolute !important;
-        top: 8px !important;
-        left: 45px !important; /* Margen de 45px para no tapar los botones nativos (+/-) */
+        top: 10px !important;
+        left: 45px !important; /* Libera el espacio de los botones de acción nativos */
         right: auto !important;
         width: auto !important;
         max-width: 55% !important;
         display: flex !important;
         flex-direction: row !important;
-        z-index: 1010 !important;
+        z-index: 1020 !important; /* Máxima prioridad para que no se oculte */
     }
 
     #logos-institucionales-flotante img {
         height: auto !important;
-        max-height: 24px !important; /* Tamaño compacto para vista vertical */
+        max-height: 24px !important; /* Altura compacta para celular */
         width: auto !important;
     }
 
-    /* 2. TÍTULO: Parte superior a la derecha, un escalón abajo de los logos */
+    /* 2. TÍTULO: Un paso abajo de los logos, alineado a la derecha */
     .atlas-title, div.leaflet-control h1, [class*="title"] {
         position: absolute !important;
-        top: 42px !important; /* Un escalón abajo */
+        top: 55px !important; /* Bajamos a 55px para garantizar que nunca toque los logos */
         right: 8px !important;
         left: auto !important;
         width: auto !important;
         max-width: 85% !important;
         text-align: right !important;
-        z-index: 1010 !important;
+        z-index: 1015 !important;
         margin: 0 !important;
     }
 
-    /* 3. BUSCADOR: Por debajo del título a la izquierda */
+    /* 3. BUSCADOR: Por debajo del título, alineado a la izquierda */
     #search-box, .leaflet-control-search, [class*="search"] {
         position: absolute !important;
-        top: 85px !important; /* Por debajo del título */
+        top: 105px !important; /* Bajamos a 105px para librar el nuevo margen del título */
         left: 8px !important;
         right: auto !important;
-        width: 55% !important; /* Ancho controlado para que no choque con las capas */
-        max-width: 180px !important;
+        width: 50% !important; /* Espacio controlado para dejar libre la derecha */
+        max-width: 170px !important;
         z-index: 1010 !important;
         margin: 0 !important;
     }
 
-    /* 4. PANEL DE CAPAS: Alineado a la derecha, en la misma línea del buscador */
+    /* 4. PANEL DE CAPAS: En la misma línea del buscador, alineado a la derecha */
     .leaflet-control-layers, [class*="layers"] {
         position: absolute !important;
-        top: 85px !important; /* Misma altura en píxeles que el buscador */
+        top: 105px !important; /* Exactamente la misma altura que el buscador */
         right: 8px !important;
         left: auto !important;
         z-index: 1010 !important;
@@ -454,8 +454,10 @@
     }
 }
 /* ==========================================================================
-   FIN DEL BLOQUE VERTICAL - EL RESTO PERMANECE INTACTO
+   FIN DEL BLOQUE - LA PC Y VISTA HORIZONTAL SE MANTIENEN INTACTAS
    ========================================================================== */
+
+
 
         </style>
         <title>Atlas de Planeación y Estadística Educativa 2026</title>
