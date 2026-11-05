@@ -287,3 +287,17 @@
 #map .atlas-descargas-control button {
     border-color: #ffffff !important;
 }
+
+/* Buscador del catálogo: sin aro dorado; scroll dorado en resultados. */
+#atlas-descargas #ad-busqueda:focus,
+#atlas-descargas #ad-busqueda:focus-visible {
+    outline: none !important;
+    border-color: #872341 !important;
+    box-shadow: none !important;
+}
+#atlas-descargas .ad-lista {
+    scrollbar-width: auto;
+    scrollbar-color: #b88b5b #eaeaea;
+}
+#atlas-descargas .ad-lista::-webkit-scrollbar-track {background:#eaeaea; border-radius:8px;}
+#atlas-descargas .ad-lista::-webkit-scrollbar-thumb {background:#b88b5b; border-radius:8px;}

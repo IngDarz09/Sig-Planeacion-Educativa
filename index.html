@@ -230,7 +230,9 @@
     /* FUERZA LA FUENTE GILROY EN EL TEXTO QUE SE ESCRIBE Y EN EL PLACEHOLDER */
     font-family: 'Gilroy', Arial, sans-serif !important; 
 }
-#lista-sugerencias {
+#lista-sugerencias:empty {display:none !important;}
+#lista-sugerencias:not(:has(.sugerencia-item)) {display:none !important;}
+
     background-color: #ffffff !important;
     border-radius: 0 0 8px 8px;
     max-height: 220px;
@@ -493,8 +495,9 @@
     outline-offset: 3px;
 }
 #panel-informacion .atlas-composicion-regional ul {
+    list-style: none;
     margin: 9px 0 0;
-    padding-left: 20px;
+    padding-left: 0;
     max-height: 145px;
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -514,26 +517,51 @@
 }
 </style>
 <style>
-#panel-informacion .atlas-alternar-micros {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 9px;
-    padding: 8px 10px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    background: #872341;
-    color: #fff;
-    font: inherit;
-    font-weight: 700;
-    cursor: pointer;
+#lista-sugerencias:not(:has(.sugerencia-item)) {display:none !important;}
+#lista-sugerencias {
+    box-sizing:border-box !important;
+    margin-top:3px !important;
+    border:1px solid #d6d0d5 !important;
+    border-radius:8px !important;
+    max-height:220px !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    overscroll-behavior:contain;
+    scrollbar-width:auto;
+    scrollbar-color:#b88b5b #eaeaea;
+    background:#fff !important;
+    box-shadow:0 4px 12px rgba(0,0,0,.15) !important;
 }
-#panel-informacion .atlas-alternar-micros:hover,
-#panel-informacion .atlas-alternar-micros:active {background: #872341; color: #fff;}
-#panel-informacion .atlas-alternar-micros:focus-visible {outline: 2px solid #fff; outline-offset: 2px;}
-#panel-informacion .atlas-composicion-regional ul {list-style: none; padding-left: 0;}
-#panel-informacion .atlas-composicion-regional label {display: flex; align-items: flex-start; gap: 8px; cursor: pointer; padding: 3px 0;}
-#panel-informacion .atlas-composicion-regional input[type="checkbox"] {accent-color: #872341; flex: 0 0 auto; width: 16px; height: 16px; margin: 1px 0 0;}
+#lista-sugerencias::-webkit-scrollbar-track {background:#eaeaea; border-radius:8px;}
+#lista-sugerencias::-webkit-scrollbar-thumb {background:#b88b5b; border-radius:8px;}
+#lista-sugerencias .sugerencia-item {border-radius:0 !important;}
+#lista-sugerencias .sugerencia-item:last-child {border-bottom:0 !important;}
+#lista-sugerencias .sugerencia-item:hover,
+#lista-sugerencias .sugerencia-item.teclado-activa {background:#872341 !important;color:#fff !important;}
+#buscador-caja-interna {box-shadow:0 4px 12px rgba(0,0,0,.15) !important;}
+#buscador-caja-interna #input-busqueda {border:0 !important;box-shadow:none !important;}
+body ul.photon-autocomplete {
+    box-sizing:border-box !important; list-style:none !important;
+    margin:3px 0 0 !important; padding:0 !important;
+    border:1px solid #d6d0d5 !important; border-radius:8px !important;
+    background:#fff !important; box-shadow:0 4px 12px rgba(0,0,0,.15) !important;
+    max-height:220px !important; overflow-y:auto !important; overflow-x:hidden !important;
+    overscroll-behavior:contain; scrollbar-width:auto; scrollbar-color:#b88b5b #eaeaea;
+    font-family:'Gilroy',Arial,sans-serif !important;
+}
+body ul.photon-autocomplete::-webkit-scrollbar-track {background:#eaeaea; border-radius:8px;}
+body ul.photon-autocomplete::-webkit-scrollbar-thumb {background:#b88b5b; border-radius:8px;}
+body ul.photon-autocomplete li {
+    box-sizing:border-box !important; display:block !important; list-style:none !important;
+    margin:0 !important; padding:10px 15px !important; border:0 !important;
+    border-bottom:1px solid #f0f0f0 !important; border-radius:0 !important;
+    background:#fff !important; color:#333 !important;
+    font:400 14px/1.4 'Gilroy',Arial,sans-serif !important; cursor:pointer;
+}
+body ul.photon-autocomplete li strong {font-weight:400 !important;}
+body ul.photon-autocomplete li.on, body ul.photon-autocomplete li:hover {background:#872341 !important;color:#fff !important;}
+body ul.photon-autocomplete li.on strong, body ul.photon-autocomplete li:hover strong {color:#fff !important;}
+body ul.photon-autocomplete li:last-child {border-bottom:0 !important;}
 </style>
 <style>
 #panel-informacion .atlas-composicion-municipal {
@@ -802,7 +830,8 @@
 
 <style>
 
-#lista-sugerencias {
+
+
     margin-top: 3px !important;
     border: 1px solid #d6d0d5 !important;
     border-radius: 8px !important;
@@ -841,6 +870,22 @@ body ul.photon-autocomplete li strong {font-weight:400 !important;}
 body ul.photon-autocomplete li.on, body ul.photon-autocomplete li:hover {background:#872341 !important;color:#fff !important;}
 body ul.photon-autocomplete li.on strong, body ul.photon-autocomplete li:hover strong {color:#fff !important;}
 body ul.photon-autocomplete li:last-child {border-bottom:0 !important;}
+</style><style>
+#panel-informacion .atlas-alternar-micros {
+    display:block; width:100%; box-sizing:border-box; margin-top:9px;
+    padding:8px 10px; border:1px solid #fff; border-radius:5px;
+    background:#872341; color:#fff; font:inherit; font-weight:700; cursor:pointer;
+}
+#panel-informacion .atlas-alternar-micros:hover,
+#panel-informacion .atlas-alternar-micros:active {background:#872341; color:#fff;}
+#panel-informacion .atlas-alternar-micros:focus-visible {outline:2px solid #fff; outline-offset:2px;}
+</style><style>
+#panel-informacion .atlas-composicion-regional label {
+    display:flex; align-items:flex-start; gap:8px; cursor:pointer; padding:3px 0;
+}
+#panel-informacion .atlas-composicion-regional input[type="checkbox"] {
+    accent-color:#872341; flex:0 0 auto; width:16px; height:16px; margin:1px 0 0;
+}
 </style></head>
   <body>
     
@@ -5969,6 +6014,13 @@ document.addEventListener('keydown', function (evento) {
 
 </body>
 </html>
+
+
+
+
+
+
+
 
 
 
