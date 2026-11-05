@@ -238,7 +238,8 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     position: relative;
     z-index: 1200;
-}
+}#buscador-caja-interna {box-shadow:none !important;}
+#buscador-caja-interna #input-busqueda {border:0 !important;box-shadow:none !important;}
 
 .sugerencia-item {
     padding: 10px 15px;
@@ -799,7 +800,48 @@
 }
 </style>
 
-</head>
+<style>
+
+#lista-sugerencias {
+    margin-top: 3px !important;
+    border: 1px solid #d6d0d5 !important;
+    border-radius: 8px !important;
+    scrollbar-width: auto;
+    scrollbar-color: #b88b5b #eaeaea;
+}#buscador-caja-interna {box-shadow:none !important;}
+#buscador-caja-interna #input-busqueda {border:0 !important;box-shadow:none !important;}
+#lista-sugerencias::-webkit-scrollbar-track {background:#eaeaea; border-radius:8px;}
+#lista-sugerencias::-webkit-scrollbar-thumb {background:#b88b5b; border-radius:8px;}
+#lista-sugerencias .sugerencia-item {border-radius:0 !important;}
+#lista-sugerencias .sugerencia-item:last-child {border-bottom:0 !important;}
+#lista-sugerencias .sugerencia-item:hover,
+#lista-sugerencias .sugerencia-item.teclado-activa {
+    background:#872341 !important;
+    color:#fff !important;
+}
+body ul.photon-autocomplete {
+    box-sizing:border-box !important; list-style:none !important;
+    margin:3px 0 0 !important; padding:0 !important;
+    border:1px solid #d6d0d5 !important; border-radius:8px !important;
+    background:#fff !important; box-shadow:0 4px 12px rgba(0,0,0,.15) !important;
+    max-height:220px !important; overflow-y:auto !important; overflow-x:hidden !important;
+    overscroll-behavior:contain; scrollbar-width:auto; scrollbar-color:#b88b5b #eaeaea;
+    font-family:'Gilroy',Arial,sans-serif !important;
+}
+body ul.photon-autocomplete::-webkit-scrollbar-track {background:#eaeaea; border-radius:8px;}
+body ul.photon-autocomplete::-webkit-scrollbar-thumb {background:#b88b5b; border-radius:8px;}
+body ul.photon-autocomplete li {
+    box-sizing:border-box !important; display:block !important; list-style:none !important;
+    margin:0 !important; padding:10px 15px !important; border:0 !important;
+    border-bottom:1px solid #f0f0f0 !important; border-radius:0 !important;
+    background:#fff !important; color:#333 !important;
+    font:400 14px/1.4 'Gilroy',Arial,sans-serif !important; cursor:pointer;
+}
+body ul.photon-autocomplete li strong {font-weight:400 !important;}
+body ul.photon-autocomplete li.on, body ul.photon-autocomplete li:hover {background:#872341 !important;color:#fff !important;}
+body ul.photon-autocomplete li.on strong, body ul.photon-autocomplete li:hover strong {color:#fff !important;}
+body ul.photon-autocomplete li:last-child {border-bottom:0 !important;}
+</style></head>
   <body>
     
         <div id="map">
@@ -5604,6 +5646,16 @@ document.addEventListener('click', function (evento) {
 
     if (!entrada || !lista) return;
 
+    lista.addEventListener('mousemove', function () {
+        lista.querySelectorAll('.sugerencia-item.teclado-activa').forEach(function (opcion) {
+            opcion.classList.remove('teclado-activa');
+        });
+    });
+
+    lista.addEventListener('wheel', function (evento) {
+        evento.stopPropagation();
+    }, { passive: true });
+
     entrada.addEventListener('keydown', function (evento) {
         if (evento.isComposing) return;
 
@@ -5917,3 +5969,6 @@ document.addEventListener('keydown', function (evento) {
 
 </body>
 </html>
+
+
+
